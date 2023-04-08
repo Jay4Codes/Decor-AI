@@ -1,0 +1,12 @@
+.scroll-to-top {
+    position: fixed;
+    padding: 0.8rem 1rem;
+    bottom: 120px;
+    right: 30px;
+    background-color: #C00021;
+    color: #ffffff;
+    z-index: 20;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
