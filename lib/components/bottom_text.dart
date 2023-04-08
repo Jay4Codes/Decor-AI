@@ -36,7 +36,8 @@ class _BottomTextState extends State<BottomText> {
                 ? ChangeScreenAnimation.forward()
                 : ChangeScreenAnimation.reverse();
 
-            ChangeScreenAnimation.currentScreen = Screens.values[1 - ChangeScreenAnimation.currentScreen.index];
+            ChangeScreenAnimation.currentScreen =
+                Screens.values[1 - ChangeScreenAnimation.currentScreen.index];
           }
         },
         behavior: HitTestBehavior.opaque,
@@ -50,18 +51,22 @@ class _BottomTextState extends State<BottomText> {
               ),
               children: [
                 TextSpan(
-                  text: ChangeScreenAnimation.currentScreen == Screens.createAccount
+                  text: ChangeScreenAnimation.currentScreen ==
+                          Screens.createAccount
                       ? 'Already have an account? '
                       : 'Don\'t have an account? ',
                   style: const TextStyle(
-                    color: kPrimaryColor,
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 TextSpan(
-                  text: ChangeScreenAnimation.currentScreen == Screens.createAccount ? 'Log In' : 'Sign Up',
+                  text: ChangeScreenAnimation.currentScreen ==
+                          Screens.createAccount
+                      ? 'Log In'
+                      : 'Sign Up',
                   style: const TextStyle(
-                    color: kSecondaryColor,
+                    color: kPrimaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
