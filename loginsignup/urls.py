@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegistrationAPI,LoginAPI, UserAPI
+from .views import RegistrationAPI,LoginAPI, UserAPI,Newssource
 from knox import views as knox_views
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('user/', UserAPI.as_view()),
     path('logout/', knox_views.LogoutView.as_view(), name='knox_logout'),
     path('userdetail',UserAPI.as_view(),name='userdetail'),
+    path('ml-model/',Newssource.as_view(),name='ml-model')
     ]

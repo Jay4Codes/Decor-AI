@@ -8,6 +8,9 @@ from knox.models import AuthToken
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .serializers import *
+import replicate
+import os
+import base64
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
 
@@ -41,3 +44,26 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class Newssource(APIView):
+    def post(self,request):
+
+    	os.environ["REPLICATE_API_TOKEN"] = "Rapid_IPD_key"
+    	model = replicate.models.get('rossjillian/controlnet')
+
+    	prompt = request.data['prompt']
+    	image = request.data['image']
+    	print(image)
+    	data['image'] = data['image'].replace('data:image/jpeg;base64,', '')
+    	img = Image.open(io.BytesIO(
+    	            base64.decodebytes(bytes(data['image'], "utf-8"))))
+
+    	print(img)
+
+    	tol = model.predict(image=open(img, "rb"),prompt=prompt,structure = "scribble")
+    	print(tol)
+    	data = {'image':tol}
+    	return Response(data)
+
+
