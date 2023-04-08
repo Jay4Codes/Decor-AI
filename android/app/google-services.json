@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397058947356",
+    "project_id": "codeshastra-383011",
+    "storage_bucket": "codeshastra-383011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397058947356:android:8b740503db84941d0222d9",
+        "android_client_info": {
+          "package_name": "com.example.codeshastra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397058947356-ecu0aood9ogmjt1bae5m5vmjgcng8dkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN-2tDMjD04uw36wY0ner1z2aclpscKwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397058947356-ecu0aood9ogmjt1bae5m5vmjgcng8dkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,7 +10,7 @@ import 'package:codeshastra/utils/constants.dart';
 //   print("Handling a background message: ${message.messageId}");
 // }
 
-void main() async {
+Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -20,6 +21,12 @@ void main() async {
   //     ?.createNotificationChannel(channel);
   // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
   //     alert: true, badge: true, sound: true);
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  } catch (errorMsg) {
+    print("Error:: " + errorMsg.toString());
+  }
   await GetStorage.init();
   runApp(const MyApp());
 }

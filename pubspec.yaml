@@ -48,6 +48,14 @@ dependencies:
   url_launcher: ^6.1.10
   ionicons: ^0.2.2
   rename: ^2.1.1
+  firebase_core: ^2.9.0
+  augmented_reality_plugin: ^4.0.1
+  cloud_firestore: ^4.5.0
+  image_picker: ^0.8.7+1
+  fluttertoast: ^8.2.1
+  firebase_storage: ^11.1.0
+  camera: ^0.10.3+2
+  ar_flutter_plugin: ^0.7.3
 
 dev_dependencies:
   flutter_test:
