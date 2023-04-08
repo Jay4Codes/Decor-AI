@@ -17,6 +17,7 @@ class _CategoriesState extends State<Categories> {
         margin: EdgeInsets.symmetric(vertical: 20),
         child: GridView.count(
           crossAxisCount: 2,
+          physics: BouncingScrollPhysics(),
           primary: false,
           padding: const EdgeInsets.all(20),
           crossAxisSpacing: 10,
@@ -34,7 +35,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -42,7 +43,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/traditional.jpg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -71,7 +73,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -79,7 +81,7 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/contemporary.jpeg",
-                        height: 125,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -108,7 +110,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -116,7 +118,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/rustic.jpeg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -143,7 +146,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -151,7 +154,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/bohemian.jpg",
-                        fit: BoxFit.contain,
+                        fit: BoxFit.fill,
+                        height: 132,
                       ),
                     ),
                     SizedBox(
@@ -178,7 +182,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -186,7 +190,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/industrial.png",
-                        fit: BoxFit.contain,
+                        fit: BoxFit.fill,
+                        height: 132,
                       ),
                     ),
                     SizedBox(
@@ -213,7 +218,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -221,7 +226,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/coastal.jpg",
-                        fit: BoxFit.contain,
+                        fit: BoxFit.fill,
+                        height: 132,
                       ),
                     ),
                     SizedBox(
@@ -243,12 +249,12 @@ class _CategoriesState extends State<Categories> {
                     MaterialPageRoute(
                         builder: ((context) => PanoramaView(
                             image: 'assets/images/mid-century.jpg',
-                            placeName: 'Mid-Century Modern'))));
+                            placeName: 'Mid-Century'))));
               },
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -256,7 +262,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/mid-century.jpg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -283,7 +290,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -291,7 +298,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/farmhouse.jpg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -318,7 +326,7 @@ class _CategoriesState extends State<Categories> {
               child: Container(
                 decoration: BoxDecoration(
                     color: Color(0xFF565656).withOpacity(0.5),
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -326,7 +334,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/scandinavian.jpg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(
@@ -361,7 +370,8 @@ class _CategoriesState extends State<Categories> {
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "assets/images/rajhastani.jpg",
-                        fit: BoxFit.contain,
+                        height: 132,
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(

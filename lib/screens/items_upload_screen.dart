@@ -15,12 +15,17 @@ class ItemsUploadScreen extends StatefulWidget {
 
 class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   Uint8List? imageFileUint8List;
+  bool isImagePicked = false;
 
-  TextEditingController sellerNameTextEditingController = TextEditingController();
-  TextEditingController sellerPhoneTextEditingController = TextEditingController();
+  TextEditingController sellerNameTextEditingController =
+      TextEditingController();
+  TextEditingController sellerPhoneTextEditingController =
+      TextEditingController();
   TextEditingController itemNameTextEditingController = TextEditingController();
-  TextEditingController itemDescriptionTextEditingController = TextEditingController();
-  TextEditingController itemPriceTextEditingController = TextEditingController();
+  TextEditingController itemDescriptionTextEditingController =
+      TextEditingController();
+  TextEditingController itemPriceTextEditingController =
+      TextEditingController();
 
   bool isUploading = false;
   String downloadUrlOfUploadedImage = "";
@@ -230,14 +235,20 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         });
 
         //1.upload image to firebase storage
-        String imageUniqueName = DateTime.now().millisecondsSinceEpoch.toString();
+        String imageUniqueName =
+            DateTime.now().millisecondsSinceEpoch.toString();
 
-        fStorage.Reference firebaseStorageRef =
-            fStorage.FirebaseStorage.instance.ref().child("Items Images").child(imageUniqueName);
+        fStorage.Reference firebaseStorageRef = fStorage
+            .FirebaseStorage.instance
+            .ref()
+            .child("Items Images")
+            .child(imageUniqueName);
 
-        fStorage.UploadTask uploadTaskImageFile = firebaseStorageRef.putData(imageFileUint8List!);
+        fStorage.UploadTask uploadTaskImageFile =
+            firebaseStorageRef.putData(imageFileUint8List!);
 
-        fStorage.TaskSnapshot taskSnapshot = await uploadTaskImageFile.whenComplete(() {});
+        fStorage.TaskSnapshot taskSnapshot =
+            await uploadTaskImageFile.whenComplete(() {});
 
         await taskSnapshot.ref.getDownloadURL().then((imageDownloadUrl) {
           downloadUrlOfUploadedImage = imageDownloadUrl;
@@ -246,7 +257,8 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         //2.save item info to firestore database
         saveItemInfoToFirestore();
       } else {
-        Fluttertoast.showToast(msg: "Please complete upload form. Every field is mandatory.");
+        Fluttertoast.showToast(
+            msg: "Please complete upload form. Every field is mandatory.");
       }
     } else {
       Fluttertoast.showToast(msg: "Please select image file.");
@@ -275,7 +287,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
       imageFileUint8List = null;
     });
 
-    Navigator.push(context, MaterialPageRoute(builder: (c) => const HomeScreen()));
+    Navigator.pop(context);
   }
 
   //default screen
@@ -349,6 +361,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
               SimpleDialogOption(
                 onPressed: () {
                   chooseImageFromPhoneGallery();
+                  Navigator.pop(context);
                 },
                 child: const Text(
                   "Choose image from Gallery",
@@ -377,7 +390,12 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
     Navigator.pop(context);
 
     try {
-      final pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+
+      setState(() {
+        isImagePicked = true;
+      });
 
       if (pickedImage != null) {
         String imagePath = pickedImage.path;
@@ -385,7 +403,8 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
         //remove background from image
         //make image transparent
-        imageFileUint8List = await ApiConsumer().removeImageBackgroundApi(imagePath);
+        imageFileUint8List =
+            await ApiConsumer().removeImageBackgroundApi(imagePath);
 
         setState(() {
           imageFileUint8List;
@@ -396,24 +415,30 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
       setState(() {
         imageFileUint8List = null;
+        isImagePicked = false;
       });
     }
   }
 
   chooseImageFromPhoneGallery() async {
-    Navigator.pop(context);
-
     try {
-      final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        isImagePicked = true;
+      });
 
       if (pickedImage != null) {
         String imagePath = pickedImage.path;
+
         imageFileUint8List = await pickedImage.readAsBytes();
 
         //remove background from image
         //make image transparent
-        imageFileUint8List = await ApiConsumer().removeImageBackgroundApi(imagePath);
-
+        imageFileUint8List =
+            await ApiConsumer().removeImageBackgroundApi(imagePath);
+        print(imagePath);
         setState(() {
           imageFileUint8List;
         });
@@ -423,12 +448,22 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
       setState(() {
         imageFileUint8List = null;
+        isImagePicked = false;
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return imageFileUint8List == null ? defaultScreen() : uploadFormScreen();
+    return !isImagePicked
+        ? defaultScreen()
+        : imageFileUint8List == null
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                ],
+              )
+            : uploadFormScreen();
   }
 }

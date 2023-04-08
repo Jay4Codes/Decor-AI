@@ -1,5 +1,6 @@
 import 'package:codeshastra/screens/items.dart';
 import 'package:codeshastra/screens/virtual_ar_view_screen.dart';
+import 'package:codeshastra/utils/constants.dart';
 import 'package:pay/pay.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -64,62 +65,15 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                   widget.clickedItemInfo!.itemName.toString(),
                 ),
               ),
-              floatingActionButton: Row(
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        var options = {
-                          "key": "rzp_test_53topzkI5ia0Ge",
-                          "amount": 200 * 100,
-                          "name": "abcd",
-                          "description": "title",
-                          "prefill": {
-                            "contact": "9326549053",
-                            "email": "yashs230602@gmail.com"
-                          },
-                        };
-
-                        try {
-                          _razorpay.open(options);
-                        } catch (e) {
-                          print(e.toString());
-                        }
-                      },
-                      child: const Text(
-                        'Pay with RazorPay',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
-                      )),
-                  FloatingActionButton.extended(
-                    backgroundColor: Colors.pinkAccent,
-                    onPressed: () {
-                      //try item virtually (arview)
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (c) => VirtualARViewScreen(
-                                    clickedItemImageLink: widget
-                                        .clickedItemInfo!.itemImage
-                                        .toString(),
-                                  )));
-                    },
-                    label: const Text(
-                      "Try Virtually (AR View)",
-                    ),
-                    icon: const Icon(
-                      Icons.mobile_screen_share_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
               body: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.network(
                         widget.clickedItemInfo!.itemImage.toString(),
+                        height: 400,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, top: 8.0),
@@ -149,7 +103,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          widget.clickedItemInfo!.itemPrice.toString() + " \$",
+                          widget.clickedItemInfo!.itemPrice.toString() + " \₹",
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
@@ -159,12 +113,88 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                         ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.only(left: 8.0, right: 310.0),
+                        padding: EdgeInsets.symmetric(horizontal: 50),
                         child: Divider(
                           height: 1,
                           thickness: 2,
                           color: Colors.white70,
                         ),
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextButton(
+                                style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    backgroundColor:
+                                        Color(0xffbebebe).withOpacity(0.2)),
+                                onPressed: () {
+                                  var options = {
+                                    "key": "rzp_test_53topzkI5ia0Ge",
+                                    "amount": 200 * 100,
+                                    "name": "abcd",
+                                    "description": "title",
+                                    "prefill": {
+                                      "contact": "9326549053",
+                                      "email": "yashs230602@gmail.com"
+                                    },
+                                  };
+
+                                  try {
+                                    _razorpay.open(options);
+                                  } catch (e) {
+                                    print(e.toString());
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Pay with ',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.white),
+                                    ),
+                                    Image.asset(
+                                      'assets/images/razorpay.png',
+                                      height: 30,
+                                    )
+                                  ],
+                                )),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Expanded(
+                            child: FloatingActionButton.extended(
+                              backgroundColor: kPrimaryColor,
+                              onPressed: () {
+                                //try item virtually (arview)
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (c) => VirtualARViewScreen(
+                                              clickedItemImageLink: widget
+                                                  .clickedItemInfo!.itemImage
+                                                  .toString(),
+                                            )));
+                              },
+                              label: const Text(
+                                "Try Virtually",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              icon: const Icon(
+                                Icons.mobile_screen_share_rounded,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

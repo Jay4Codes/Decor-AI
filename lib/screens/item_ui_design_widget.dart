@@ -1,5 +1,6 @@
 import 'package:codeshastra/screens/item_details_screen.dart';
 import 'package:codeshastra/screens/items.dart';
+import 'package:codeshastra/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemUIDesignWidget extends StatefulWidget {
@@ -29,149 +30,125 @@ class _ItemUIDesignWidgetState extends State<ItemUIDesignWidget> {
                     )));
       },
       splashColor: Colors.purple,
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: SizedBox(
-          height: 180,
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            children: [
-              //image
-              Image.network(
-                widget.itemsInfo!.itemImage.toString(),
-                width: 140,
-                height: 140,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Color(0xffbebebe).withOpacity(0.2),
               ),
-
-              const SizedBox(
-                width: 4.0,
-              ),
-
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 15),
-
-                    //item name
-                    Expanded(
-                      child: Text(
-                        widget.itemsInfo!.itemName.toString(),
-                        maxLines: 2,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 16,
-                        ),
+              child: Column(
+                children: [
+                  //image
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      child: Image.network(
+                        widget.itemsInfo!.itemImage.toString(),
+                        width: 140,
+                        height: 140,
                       ),
                     ),
+                  ),
 
-                    //seller name
-                    Expanded(
-                      child: Text(
-                        widget.itemsInfo!.sellerName.toString(),
-                        maxLines: 2,
-                        style: const TextStyle(
-                          color: Colors.pinkAccent,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-
-                    //show discount badge - 50% OFF badge
-                    //price origional
-                    // new price
-                    Row(
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        //50% OFF badge
-                        Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Colors.pink,
-                          ),
-                          alignment: Alignment.topLeft,
-                          width: 40,
-                          height: 44,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  "50%",
-                                  style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                                Text(
-                                  "OFF",
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ],
+                        const SizedBox(height: 10),
+
+                        //item name
+                        Expanded(
+                          child: Text(
+                            widget.itemsInfo!.itemName.toString(),
+                            maxLines: 2,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
                             ),
                           ),
                         ),
 
-                        const SizedBox(
-                          width: 10,
+                        //seller name
+                        Expanded(
+                          child: Text(
+                            widget.itemsInfo!.sellerName.toString(),
+                            maxLines: 2,
+                            style: const TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
 
-                        //origional price
-                        //new price
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        //show discount badge - 50% OFF badge
+                        //price origional
+                        // new price
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            //origional price
-                            Row(
-                              children: [
-                                const Text(
-                                  "Origional Price: \$",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                                Text(
-                                  (double.parse(widget.itemsInfo!.itemPrice!) +
-                                          double.parse(widget.itemsInfo!.itemPrice!))
-                                      .toString(),
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration.lineThrough,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            //50% OFF badge
 
+                            //origional price
                             //new price
-                            Row(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "New Price: ",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
+                                //origional price
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "\₹",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                    Text(
+                                      (double.parse(widget
+                                                  .itemsInfo!.itemPrice!) +
+                                              double.parse(
+                                                  widget.itemsInfo!.itemPrice!))
+                                          .toString(),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const Text(
-                                  "\$",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.red,
-                                  ),
+                                SizedBox(
+                                  height: 5,
                                 ),
-                                Text(
-                                  widget.itemsInfo!.itemPrice.toString(),
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.red,
-                                  ),
+                                //new price
+                                Row(
+                                  children: [
+                                    const Text(
+                                      "",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    const Text(
+                                      "\₹",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: kPrimaryColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      widget.itemsInfo!.itemPrice.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: kPrimaryColor,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -179,21 +156,31 @@ class _ItemUIDesignWidgetState extends State<ItemUIDesignWidget> {
                         ),
                       ],
                     ),
-
-                    const SizedBox(
-                      height: 8.0,
-                    ),
-
-                    const Divider(
-                      height: 4,
-                      color: Colors.white70,
-                    ),
-                  ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Transform.rotate(
+            angle:
+                -0.785, // Rotate by 45 degrees counter-clockwise (in radians)
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                '50% OFF',
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
