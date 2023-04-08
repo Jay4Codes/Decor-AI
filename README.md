@@ -1,1 +1,3 @@
-# djsci_Enemies_of_Syntax
+# CodeShastraPrivate
+
+Frontend Web - Vite + React
