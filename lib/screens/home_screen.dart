@@ -1,3 +1,4 @@
+import 'package:codeshastra/screens/categories.dart';
 import 'package:codeshastra/screens/marketplace.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //   latitude: latitude!,
     //   longitude: longitude!,
     // );
-    if (activeIndex == 3) return Container();
+    if (activeIndex == 3) return Categories();
 
     return Container();
   }
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // backgroundColor: Colors.black,
         bottomNavigationBar: CurvedNavigationBar(
           height: 60,
-          color: kSecondaryColor,
+          color: kPrimaryColor,
           backgroundColor: kBackgroundColor,
           items: const [
             Icon(

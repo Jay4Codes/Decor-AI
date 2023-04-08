@@ -44,7 +44,7 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   font_awesome_flutter: ^10.4.0
   carousel_slider: ^4.2.1
-  flutter_svg: ^2.0.2
+  flutter_svg: ^1.0.0
   url_launcher: ^6.1.10
   ionicons: ^0.2.2
   rename: ^2.1.1
@@ -56,9 +56,12 @@ dependencies:
   firebase_storage: ^11.1.0
   camera: ^0.10.3+2
   ar_flutter_plugin: ^0.7.3
-  image: ^4.0.15
+  image: ^3.0.2
   flutter_colorpicker: ^1.0.3
   gradient_borders: ^1.0.0
+  pay: ^1.0.1
+  razorpay_flutter: ^1.3.4
+  panorama: ^0.4.1
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +98,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/
    
 
   # An image asset can refer to one or more resolution-specific "variants", see
