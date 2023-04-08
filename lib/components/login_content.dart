@@ -19,11 +19,13 @@ class LoginContent extends StatefulWidget {
   State<LoginContent> createState() => _LoginContentState();
 }
 
-class _LoginContentState extends State<LoginContent> with TickerProviderStateMixin {
+class _LoginContentState extends State<LoginContent>
+    with TickerProviderStateMixin {
   late final List<Widget> createAccountContent;
   late final List<Widget> loginContent;
 
-  Widget inputField(String hint, IconData iconData, [bool obscureText = false]) {
+  Widget inputField(String hint, IconData iconData,
+      [bool obscureText = false]) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
       child: SizedBox(
@@ -60,7 +62,7 @@ class _LoginContentState extends State<LoginContent> with TickerProviderStateMix
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: const StadiumBorder(),
-          primary: kSecondaryColor,
+          backgroundColor: kPrimaryColor,
           elevation: 8,
           shadowColor: Colors.black87,
         ),
@@ -131,7 +133,7 @@ class _LoginContentState extends State<LoginContent> with TickerProviderStateMix
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: kSecondaryColor,
+            color: kPrimaryColor,
           ),
         ),
       ),

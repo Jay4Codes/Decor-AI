@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:codeshastra/animations/change_screen_animation.dart';
 import 'package:codeshastra/auth/auth_controller.dart';
@@ -27,14 +28,16 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
+class _LoginScreenState extends State<LoginScreen>
+    with TickerProviderStateMixin {
   late final List<Widget> createAccountContent;
   late final List<Widget> loginContent;
   AuthController controller = AuthController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  Widget inputField(String hint, IconData iconData, [bool obscureText = false]) {
+  Widget inputField(String hint, IconData iconData,
+      [bool obscureText = false]) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
       child: SizedBox(
@@ -43,20 +46,41 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
           elevation: 8,
           shadowColor: Colors.black87,
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
-          child: TextField(
-            controller: hint == "Email" ? emailController : passwordController,
-            obscureText: obscureText,
-            textAlignVertical: TextAlignVertical.bottom,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              border: const GradientBoxBorder(
+                width: 2,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  tileMode: TileMode.repeated,
+                  colors: [
+                    Color.fromRGBO(189, 105, 255, 1),
+                    Color.fromRGBO(255, 255, 255, 0),
+                  ],
+                ),
               ),
-              filled: true,
-              fillColor: Colors.white,
-              hintText: hint,
-              prefixIcon: Icon(iconData),
+            ),
+            child: TextField(
+              controller:
+                  hint == "Email" ? emailController : passwordController,
+              obscureText: obscureText,
+              textAlignVertical: TextAlignVertical.bottom,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Color(0xff1a1a1a),
+                hintText: hint,
+                hintStyle: TextStyle(color: kPrimaryColor),
+                prefixIcon: Icon(
+                  iconData,
+                  color: kPrimaryColor,
+                ),
+              ),
             ),
           ),
         ),
@@ -69,24 +93,27 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
       padding: const EdgeInsets.symmetric(horizontal: 135, vertical: 16),
       child: ElevatedButton(
         onPressed: () async {
-          Loader.show(context, progressIndicator: CircularProgressIndicator(color: Colors.blue));
+          Loader.show(context,
+              progressIndicator: CircularProgressIndicator(color: Colors.blue));
           String status = '';
 
           try {
-            status = await controller.login(emailController.text, passwordController.text);
+            status = await controller.login(
+                emailController.text, passwordController.text);
           } on Exception catch (e) {
             Loader.hide();
           }
           Loader.hide();
 
           if (status == "Success") {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => HomeScreen())));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: ((context) => HomeScreen())));
           }
         },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: const StadiumBorder(),
-          primary: kSecondaryColor,
+          primary: kPrimaryColor,
           elevation: 8,
           shadowColor: Colors.black87,
         ),
@@ -157,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: kSecondaryColor,
+            color: kPrimaryColor,
           ),
         ),
       ),
