@@ -1,5 +1,7 @@
 import 'package:codeshastra/screens/categories.dart';
+import 'package:codeshastra/screens/camera.dart';
 import 'package:codeshastra/screens/marketplace.dart';
+import 'package:codeshastra/screens/roomgpt.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -27,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget getTab() {
-    if (activeIndex == 0) return Container();
+    if (activeIndex == 0) return RoomGPT();
     if (activeIndex == 1) return Container();
     if (activeIndex == 2) return MarketPlace();
     // return MapScreen(

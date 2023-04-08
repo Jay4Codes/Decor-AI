@@ -1,5 +1,7 @@
 // import 'dart:io';
 // import 'dart:math';
+// import 'dart:io';
+// import 'dart:math';
 
 // import 'package:codeshastra/screens/image_viewer.dart';
 // import 'package:flutter/material.dart';
@@ -20,12 +22,6 @@
 //   Color _wallColor = Colors.white;
 //   List<CameraDescription>? cameras;
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     initializeCamera();
-//   }
-
 //   initializeCamera() async {
 //     cameras = await availableCameras();
 //     _controller = CameraController(
@@ -33,6 +29,12 @@
 //       ResolutionPreset.medium,
 //     );
 //     _initializeControllerFuture = _controller.initialize();
+//   }
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     initializeCamera();
 //   }
 
 //   @override
@@ -84,8 +86,7 @@
 //     for (var x = 0; x < image!.width; x++) {
 //       for (var y = 0; y < image.height; y++) {
 //         final pixel = image.getPixel(x, y);
-//         final Color color = Color.fromARGB(
-//             pixel., pixel.r.toInt(), pixel.g.toInt(), pixel.b.toInt());
+//         final Color color = Color.fromARGB(pixel.a.toInt(), pixel.r.toInt(), pixel.g.toInt(), pixel.b.toInt());
 //         final distance = _colorDistance(color, _wallColor);
 //         if (distance < 50) {
 //           // Threshold for similarity.
@@ -108,16 +109,12 @@
 //     for (var x = 0; x < image.width; x++) {
 //       for (var y = 0; y < image.height; y++) {
 //         final pixel = image.getPixel(x, y);
-//         final color = Color.fromARGB(
-//             pixel.a.toInt(), pixel.r.toInt(), pixel.g.toInt(), pixel.b.toInt());
+//         final color = Color.fromARGB(pixel.a.toInt(), pixel.r.toInt(), pixel.g.toInt(), pixel.b.toInt());
 //         final distance = _colorDistance(color, _wallColor);
 //         if (distance < 50) {
 //           // Threshold for similarity.
 //           image.setPixel(
-//               x,
-//               y,
-//               img.ColorFloat16.rgba(_wallColor.red, _wallColor.green,
-//                   _wallColor.blue, _wallColor.alpha));
+//               x, y, img.ColorFloat16.rgba(_wallColor.red, _wallColor.green, _wallColor.blue, _wallColor.alpha));
 //         }
 //       }
 //     }
@@ -166,11 +163,7 @@
 //                             final file = await _detectWallColor();
 //                             Navigator.of(context).pop();
 //                             // ignore: use_build_context_synchronously
-//                             Navigator.push(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                     builder: (context) =>
-//                                         ImageViewer(image: file!)));
+//                             Navigator.push(context, MaterialPageRoute(builder: (context) => ImageViewer(image: file!)));
 //                           },
 //                         ),
 //                       ],
