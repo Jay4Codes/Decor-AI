@@ -7,39 +7,54 @@ class CameraScreen extends StatefulWidget {
 }
 
 class _CameraScreenState extends State<CameraScreen> {
-  CameraController? controller;
+  late CameraController controller;
+  Future<void>? _initializeControllerFuture;
   List<CameraDescription>? cameras;
+
+  void initializeFuntion() async {
+    cameras = await availableCameras();
+    controller = CameraController(cameras![0], ResolutionPreset.medium);
+
+    _initializeControllerFuture = controller.initialize();
+    setState(() {});
+    // controller.initialize().then((_) {
+    //   if (!mounted) {
+    //     return;
+    //   }
+    //   setState(() {});
+    // });
+  }
 
   @override
   void initState() {
     super.initState();
-    controller = CameraController(cameras![0], ResolutionPreset.medium);
-    controller?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
+    initializeFuntion();
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!controller!.value.isInitialized) {
-      return Container();
-    }
+    // if (!controller.value.isInitialized) {
+    //   return Container();
+    // }
     return Scaffold(
-      body: Center(
-        child: AspectRatio(
-          aspectRatio: controller!.value.aspectRatio,
-          child: CameraPreview(controller!),
-        ),
-      ),
+      body: FutureBuilder(
+          future: _initializeControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return AspectRatio(
+                aspectRatio: 10 / 16,
+                child: CameraPreview(controller),
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          }),
     );
   }
 }

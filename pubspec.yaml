@@ -56,9 +56,10 @@ dependencies:
   firebase_storage: ^11.1.0
   camera: ^0.10.3+2
   ar_flutter_plugin: ^0.7.3
-  image: ^4.0.15
+  image: ^3.0.2
   flutter_colorpicker: ^1.0.3
   gradient_borders: ^1.0.0
+  dotted_border: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
