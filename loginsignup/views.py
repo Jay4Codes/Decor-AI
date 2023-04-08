@@ -11,6 +11,9 @@ from .serializers import *
 import replicate
 import os
 import base64
+from PIL import Image
+import io
+import json
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
 
@@ -48,22 +51,24 @@ class UserAPI(generics.RetrieveAPIView):
 
 class Newssource(APIView):
     def post(self,request):
-
-    	os.environ["REPLICATE_API_TOKEN"] = "Rapid_IPD_key"
-    	model = replicate.models.get('rossjillian/controlnet')
-
-    	prompt = request.data['prompt']
-    	image = request.data['image']
-    	print(image)
-    	data['image'] = data['image'].replace('data:image/jpeg;base64,', '')
-    	img = Image.open(io.BytesIO(
-    	            base64.decodebytes(bytes(data['image'], "utf-8"))))
-
-    	print(img)
-
-    	tol = model.predict(image=open(img, "rb"),prompt=prompt,structure = "scribble")
-    	print(tol)
-    	data = {'image':tol}
-    	return Response(data)
+        os.environ["REPLICATE_API_TOKEN"] = "r8_VHjBVBjw2jDcDobmBWabZxwcdozfPy73gTc9c"
+        model = replicate.models.get('rossjillian/controlnet')
+        # prompt = request.data['prompt']
+        # print(prompt)
+        # image = request.data['image']
+        # print(image)
+        data = json.loads(request.body)
+        prompt = data['prompt']
+        print("data",data['image'])
+        data['image'] = data['image'].replace('data:image/jpeg;base64,', '')
+        img = Image.open(io.BytesIO(
+                    base64.decodebytes(bytes(data['image'], "utf-8"))))
+        #Image.save(img, "image.jpg")
+        img.save("image.jpg")
+        print(img)
+        tol = model.predict(image=open('./image.jpg', "rb"),prompt=prompt,structure = "scribble")
+        print(tol)
+        data = {'image':tol}
+        return Response(data)
 
 
