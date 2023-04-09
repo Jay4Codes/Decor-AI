@@ -6,10 +6,7 @@
 }
 
 .plan {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     line-height: 3em;
-    font-size: 2em;
+    font-size: 1.2em;
     margin: 10px 200px 10px 20px;
 }

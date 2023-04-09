@@ -5,7 +5,8 @@
 .banner-title {
     position: fixed;
     top: 200px;
-    left: 400px;
+    margin-left: 25%;
+    width: max-content;
     line-height: 3.2rem;
     font-size: 4.2rem;
     font-weight: 700;

@@ -96,7 +96,8 @@ const RoomGPT = () => {
       {/* <img src={newImage} alt="newImage" /> */}
 
       <Fade bottom cascade>
-        <div style={{ width: 700, height: 450 }}>
+        <div style={{ width: 700, height: 450, marginLeft: "25%", marginBottom: "60px" }}>
+          <h1>Slider Comparison</h1>
           {newImage ? (
             <ImageSlider image1={previewImage} image2={newImage} />
           ) : null}
