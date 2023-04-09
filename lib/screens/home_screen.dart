@@ -1,13 +1,17 @@
 import 'package:codeshastra/screens/categories.dart';
 import 'package:codeshastra/screens/camera.dart';
+import 'package:codeshastra/screens/lens.dart';
 import 'package:codeshastra/screens/marketplace.dart';
 import 'package:codeshastra/screens/roomgpt.dart';
+import 'package:codeshastra/screens/video_player.dart';
+import 'package:codeshastra/screens/videos.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:codeshastra/utils/constants.dart';
+// import 'package:video_player/video_player.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget getTab() {
     if (activeIndex == 0) return RoomGPT();
-    if (activeIndex == 1) return Container();
+    if (activeIndex == 1) return Videos();
     if (activeIndex == 2) return MarketPlace();
     // return MapScreen(
     //   latitude: latitude!,
@@ -38,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // );
     if (activeIndex == 3) return Categories();
 
-    return Container();
+    return ObjectLens();
   }
 
   @override
@@ -51,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: kBackgroundColor,
           items: const [
             Icon(
-              Icons.home,
+              Icons.color_lens,
               size: 24,
               color: Colors.white,
             ),
@@ -61,17 +65,17 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
             Icon(
-              FontAwesomeIcons.earthAfrica,
-              size: 24,
+              FontAwesomeIcons.moneyBill,
+              size: 22,
               color: Colors.white,
             ),
             Icon(
-              Icons.add_circle,
-              size: 24,
+              FontAwesomeIcons.panorama,
+              size: 20,
               color: Colors.white,
             ),
             Icon(
-              Icons.account_box,
+              FontAwesomeIcons.chair,
               size: 24,
               color: Colors.white,
             )

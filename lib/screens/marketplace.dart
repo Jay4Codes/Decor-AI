@@ -29,8 +29,7 @@ class _MarketPlaceState extends State<MarketPlace> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (c) => ItemsUploadScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (c) => ItemsUploadScreen()));
             },
             icon: const Icon(
               Icons.add,
@@ -40,21 +39,16 @@ class _MarketPlaceState extends State<MarketPlace> {
         ],
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("items")
-            .orderBy("publishedDate", descending: true)
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection("items").orderBy("publishedDate", descending: true).snapshots(),
         builder: (context, AsyncSnapshot dataSnapshot) {
+          // print(dataSnapshot.error);
           if (dataSnapshot.hasData) {
             return GridView.builder(
               physics: BouncingScrollPhysics(),
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               itemCount: dataSnapshot.data!.docs.length,
               itemBuilder: (context, index) {
-                Items eachItemInfo = Items.fromJson(
-                    dataSnapshot.data!.docs[index].data()
-                        as Map<String, dynamic>);
+                Items eachItemInfo = Items.fromJson(dataSnapshot.data!.docs[index].data() as Map<String, dynamic>);
 
                 return ItemUIDesignWidget(
                   itemsInfo: eachItemInfo,

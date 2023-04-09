@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:codeshastra/utils/constants.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -19,6 +20,9 @@ class _RoomGPTState extends State<RoomGPT> {
   File? imageFile;
   String imgUrl = "";
   bool isImageLoaded = false;
+  String ogColor = "Red";
+
+  List<String> color = ['Red', 'Yellow', 'Green', 'Orange', 'Black', 'Violet', 'Indigo', 'Blue', 'White'];
 
   _getFromGallery() async {
     XFile? pickedFile = await ImagePicker().pickImage(
@@ -44,7 +48,7 @@ class _RoomGPTState extends State<RoomGPT> {
       final response = await http.post(Uri.parse('http://127.0.0.1:8000/login/ml-model/'),
           body: jsonEncode({
             "image": base64,
-            "prompt": "Change wall color to #${substr}",
+            "prompt": "only change wall color to #${ogColor}",
           }));
 
       print(response.body);
@@ -245,7 +249,35 @@ class _RoomGPTState extends State<RoomGPT> {
                         height: 25,
                       ),
                     ),
-                  )
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: DropdownButton<String>(
+                      value: ogColor,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(color: kPrimaryColor),
+                      underline: Container(
+                        height: 2,
+                        color: kPrimaryColor,
+                      ),
+                      onChanged: (String? newValue) async {
+                        setState(() {
+                          ogColor = newValue!;
+                        });
+                        final bytes = await File(imageFile!.path).readAsBytesSync();
+                        String base64Encode = base64.encode(bytes);
+                        changeWallColor(context, base64Encode, ogColor);
+                      },
+                      items: color.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ],
               ),
               isImageLoaded

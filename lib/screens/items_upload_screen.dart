@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:codeshastra/screens/api_consumer.dart';
 import 'package:codeshastra/screens/home_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:codeshastra/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,15 +18,11 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   Uint8List? imageFileUint8List;
   bool isImagePicked = false;
 
-  TextEditingController sellerNameTextEditingController =
-      TextEditingController();
-  TextEditingController sellerPhoneTextEditingController =
-      TextEditingController();
+  TextEditingController sellerNameTextEditingController = TextEditingController();
+  TextEditingController sellerPhoneTextEditingController = TextEditingController();
   TextEditingController itemNameTextEditingController = TextEditingController();
-  TextEditingController itemDescriptionTextEditingController =
-      TextEditingController();
-  TextEditingController itemPriceTextEditingController =
-      TextEditingController();
+  TextEditingController itemDescriptionTextEditingController = TextEditingController();
+  TextEditingController itemPriceTextEditingController = TextEditingController();
 
   bool isUploading = false;
   String downloadUrlOfUploadedImage = "";
@@ -93,58 +90,61 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
                     ),
             ),
           ),
-
-          const Divider(
-            color: Colors.white70,
-            thickness: 2,
+          SizedBox(
+            height: 15,
           ),
-
           //seller name
           ListTile(
             leading: const Icon(
               Icons.person_pin_rounded,
               color: Colors.white,
             ),
-            title: SizedBox(
+            title: Container(
               width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), border: Border.all(width: 1, color: Colors.white)),
               child: TextField(
+                cursorColor: kPrimaryColor,
                 style: const TextStyle(color: Colors.grey),
                 controller: sellerNameTextEditingController,
                 decoration: const InputDecoration(
-                  hintText: "seller name",
+                  hintText: "Your name",
+                  contentPadding: EdgeInsets.only(left: 10),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          const Divider(
-            color: Colors.white70,
-            thickness: 1,
+          SizedBox(
+            height: 15,
           ),
-
           //seller phone
           ListTile(
             leading: const Icon(
               Icons.phone_iphone_rounded,
               color: Colors.white,
             ),
-            title: SizedBox(
+            title: Container(
               width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), border: Border.all(width: 1, color: Colors.white)),
               child: TextField(
+                cursorColor: kPrimaryColor,
                 style: const TextStyle(color: Colors.grey),
                 controller: sellerPhoneTextEditingController,
+                keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(
-                  hintText: "seller phone",
+                  hintText: "Your phone number",
+                  contentPadding: EdgeInsets.only(left: 10),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          const Divider(
-            color: Colors.white70,
-            thickness: 1,
+          SizedBox(
+            height: 15,
           ),
 
           //item name
@@ -153,22 +153,25 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
               Icons.title,
               color: Colors.white,
             ),
-            title: SizedBox(
+            title: Container(
               width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), border: Border.all(width: 1, color: Colors.white)),
               child: TextField(
+                cursorColor: kPrimaryColor,
                 style: const TextStyle(color: Colors.grey),
                 controller: itemNameTextEditingController,
                 decoration: const InputDecoration(
                   hintText: "item name",
+                  contentPadding: EdgeInsets.only(left: 10),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          const Divider(
-            color: Colors.white70,
-            thickness: 1,
+          SizedBox(
+            height: 15,
           ),
 
           //item description
@@ -177,22 +180,25 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
               Icons.description,
               color: Colors.white,
             ),
-            title: SizedBox(
+            title: Container(
               width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), border: Border.all(width: 1, color: Colors.white)),
               child: TextField(
+                cursorColor: kPrimaryColor,
                 style: const TextStyle(color: Colors.grey),
                 controller: itemDescriptionTextEditingController,
                 decoration: const InputDecoration(
                   hintText: "item description",
+                  contentPadding: EdgeInsets.only(left: 10),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-          const Divider(
-            color: Colors.white70,
-            thickness: 1,
+          SizedBox(
+            height: 15,
           ),
 
           //item price
@@ -201,22 +207,23 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
               Icons.price_change,
               color: Colors.white,
             ),
-            title: SizedBox(
+            title: Container(
               width: 250,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15), border: Border.all(width: 1, color: Colors.white)),
               child: TextField(
+                cursorColor: kPrimaryColor,
                 style: const TextStyle(color: Colors.grey),
                 controller: itemPriceTextEditingController,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   hintText: "item price",
+                  contentPadding: EdgeInsets.only(left: 10),
                   hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
             ),
-          ),
-          const Divider(
-            color: Colors.white70,
-            thickness: 1,
           ),
         ],
       ),
@@ -235,20 +242,14 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         });
 
         //1.upload image to firebase storage
-        String imageUniqueName =
-            DateTime.now().millisecondsSinceEpoch.toString();
+        String imageUniqueName = DateTime.now().millisecondsSinceEpoch.toString();
 
-        fStorage.Reference firebaseStorageRef = fStorage
-            .FirebaseStorage.instance
-            .ref()
-            .child("Items Images")
-            .child(imageUniqueName);
+        fStorage.Reference firebaseStorageRef =
+            fStorage.FirebaseStorage.instance.ref().child("Items Images").child(imageUniqueName);
 
-        fStorage.UploadTask uploadTaskImageFile =
-            firebaseStorageRef.putData(imageFileUint8List!);
+        fStorage.UploadTask uploadTaskImageFile = firebaseStorageRef.putData(imageFileUint8List!);
 
-        fStorage.TaskSnapshot taskSnapshot =
-            await uploadTaskImageFile.whenComplete(() {});
+        fStorage.TaskSnapshot taskSnapshot = await uploadTaskImageFile.whenComplete(() {});
 
         await taskSnapshot.ref.getDownloadURL().then((imageDownloadUrl) {
           downloadUrlOfUploadedImage = imageDownloadUrl;
@@ -257,8 +258,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
         //2.save item info to firestore database
         saveItemInfoToFirestore();
       } else {
-        Fluttertoast.showToast(
-            msg: "Please complete upload form. Every field is mandatory.");
+        Fluttertoast.showToast(msg: "Please complete upload form. Every field is mandatory.");
       }
     } else {
       Fluttertoast.showToast(msg: "Please select image file.");
@@ -390,8 +390,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
     Navigator.pop(context);
 
     try {
-      final pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.camera);
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.camera);
 
       setState(() {
         isImagePicked = true;
@@ -403,8 +402,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
         //remove background from image
         //make image transparent
-        imageFileUint8List =
-            await ApiConsumer().removeImageBackgroundApi(imagePath);
+        imageFileUint8List = await ApiConsumer().removeImageBackgroundApi(imagePath);
 
         setState(() {
           imageFileUint8List;
@@ -422,8 +420,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
   chooseImageFromPhoneGallery() async {
     try {
-      final pickedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
+      final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
 
       setState(() {
         isImagePicked = true;
@@ -436,8 +433,7 @@ class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
 
         //remove background from image
         //make image transparent
-        imageFileUint8List =
-            await ApiConsumer().removeImageBackgroundApi(imagePath);
+        imageFileUint8List = await ApiConsumer().removeImageBackgroundApi(imagePath);
         print(imagePath);
         setState(() {
           imageFileUint8List;
