@@ -4,6 +4,7 @@
 App Code : https://github.com/Jay4Codes/djsci_Enemies_of_Syntax/tree/app
 <br />Web Code : https://github.com/Jay4Codes/djsci_Enemies_of_Syntax/tree/web
 <br />Backend Code : https://github.com/Jay4Codes/djsci_Enemies_of_Syntax/tree/backend 
+<br />ML code : https://github.com/Jay4Codes/djsci_Enemies_of_Syntax/tree/model
 
 # Introduction
 
@@ -34,17 +35,13 @@ Room Panorama Effect
 The Room Panorama Effect feature allows users to view their room in a 360-degree panorama. Users can move their device around to view the room from different angles. This feature uses panoramic image stitching technology to create a seamless panorama of the room.
 
 Features available in Decor AI .
-<br /> ->Local/Global News via location.
-<br /> ->Push Notifications.
-<br /> ->Map based news. 
-<br /> ->News Reels.
-<br /> ->FCM based notifications.
-<br /> ->Create post - studio web.
-<br /> ->Analytics.
-<br /> ->Alan Chatbot.
+<br /> ->AR based Marketplace.
+<br /> ->Panorama based interior design viewing.
+<br /> ->Object detection and price estimation of the cost that would take to replicate the room. 
+<br /> ->Home Decor Reels.
+<br /> ->Wall color changing functionality.
+<br /> ->Paint Quotations based on quality and quantity of paint required.
 <br /> ->Multilingual.
-<br /> ->Text to speech news after shaking the phone.
-<br /> ->Category Filtering.
 
 
 Success usually comes to those who are too busy to be looking for it.” – Henry David Thoreau
