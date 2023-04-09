@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegistrationAPI,LoginAPI, UserAPI,Newssource
+from .views import *
 from knox import views as knox_views
 
 urlpatterns = [
