@@ -8,10 +8,7 @@ const Footer = () => {
           <div className="row ">
             <div className="col-lg-6">
               <p className="mb-0">
-                Designed & Developed by&nbsp;&nbsp;
-                <a href="themefisher.com" className="text-white">
-                  Team Enemies of Syntax
-                </a>
+                Designed & Developed by&nbsp;&nbsp;Team Enemies of Syntax
               </p>
             </div>
             <div className="col-lg-6">

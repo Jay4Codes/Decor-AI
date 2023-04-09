@@ -1,22 +1,22 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,600,700|Work+Sans:400,700,800");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;1,500;1,700&family=Passions+Conflict&display=swap');
 
 html {
     overflow-x: hidden;
 }
 
 body {
-    font-family: "Lato", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.166667px;
     line-height: 1.7em;
-    color: #ffffff;
-    background-color: #000;
+    color: #000000;
+    background-color: #ffffff;
 }
 
 p {
-    color: #bcbcbc;
+    color: #000000;
 }
 
 h1,
@@ -31,8 +31,6 @@ h5,
 .h5,
 h6,
 .h6 {
-    font-family: "Work Sans", sans-serif;
-    color: #ffffff;
     font-weight: 600;
 }
 
@@ -101,34 +99,34 @@ h6,
 }
 
 .btn-main {
-    background: #f44336;
-    color: #fff;
+    background: #0095f2;
+    color: #000;
 }
 
 .btn-main:hover {
-    color: #fff !important;
-    background: #000;
+    color: #000 !important;
+    background: #ffffff;
 }
 
 .btn-black {
     background: #000;
-    color: #fff;
+    color: #000;
 }
 
 .btn-black:hover {
-    background: #f44336;
-    color: #fff;
+    background: #0095f2;
+    color: #000;
 }
 
 .btn-white {
-    background: #fff;
+    background: #000;
     color: #000;
-    border-color: #fff;
+    border-color: #000;
 }
 
 .btn-white:hover {
     background: transparent;
-    color: #fff;
+    color: #000;
 }
 
 a {
@@ -137,13 +135,13 @@ a {
 }
 
 a:hover {
-    color: #f44336;
+    color: #0095f2;
     text-decoration: none;
     outline: none;
 }
 
 .bg-primary {
-    background: #f44336 !important;
+    background: #0095f2 !important;
 }
 
 .bg-secondary {
@@ -155,7 +153,7 @@ a:hover {
 }
 
 .text-color {
-    color: #f44336;
+    color: #0095f2;
 }
 
 .page-title h1 {
@@ -171,7 +169,7 @@ a:hover {
     width: 40px;
     height: 2px;
     margin-left: -25px;
-    background: #f44336;
+    background: #0095f2;
 }
 
 @media (max-width: 575px) {
@@ -239,18 +237,18 @@ ul.dropdown-menu>li>a,
     padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #27243e;
-    color: #fff;
+    color: #000;
     text-transform: uppercase;
 }
 
 ul.dropdown-menu>li>a:hover,
 .navbar ul ul ul.dropdown-menu li .nav-link:hover {
-    color: #f44336;
+    color: #0095f2;
 }
 
 .dropdown-item:focus,
 .dropdown-item:hover {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     background-color: transparent;
 }
@@ -396,7 +394,7 @@ ul.dropdown-menu>li>a:hover,
 }
 
 .portfolio .btn-group .btn:hover {
-    color: #f44336;
+    color: #0095f2;
 }
 
 .portfolio .btn-group:not(:first-child)>.btn,
@@ -406,7 +404,7 @@ ul.dropdown-menu>li>a:hover,
 }
 
 .portfolio .btn.active {
-    color: #f44336;
+    color: #0095f2;
 }
 
 .inner-box {
@@ -485,7 +483,7 @@ ul.dropdown-menu>li>a:hover,
 }
 
 .inner-box .image h3 {
-    color: #fff;
+    color: #000;
 }
 
 .overlay-content h5 {
@@ -504,7 +502,7 @@ ul.dropdown-menu>li>a:hover,
     margin-top: 2px;
     text-transform: capitalize;
     background: rgba(255, 255, 255, 0.9);
-    color: #dddddd;
+    color: #4a4a4a;
     transform: translateX(-150px);
     transition: all 0.5s;
 }
@@ -514,8 +512,8 @@ ul.dropdown-menu>li>a:hover,
     height: 60px;
     display: inline-block;
     text-align: center;
-    background: #000;
-    color: #fff;
+    background: #ffffff;
+    color: #000;
     padding-top: 16px;
     position: absolute;
     top: 40%;
@@ -565,7 +563,7 @@ ul.dropdown-menu>li>a:hover,
 .progress-bar-content .progress-title {
     text-transform: capitalize;
     font-size: 14px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
 }
 
@@ -574,11 +572,11 @@ ul.dropdown-menu>li>a:hover,
 }
 
 .progress-bar-content .progress-bar {
-    background: #000;
+    background: #ffffff;
 }
 
 .progress-bar-content .progress-bar-units {
-    color: #ffffff;
+    color: #000000;
 }
 
 .about-list {
@@ -642,7 +640,7 @@ ul.dropdown-menu>li>a:hover,
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #f44336;
+    border-color: #0095f2;
 }
 
 textarea.form-control {
@@ -666,7 +664,7 @@ textarea.form-control {
     width: 40px;
     height: 2px;
     margin-left: -25px;
-    background: #f44336;
+    background: #0095f2;
 }
 
 .letter-spacing {
@@ -697,7 +695,7 @@ textarea.form-control {
 }
 
 .post .post-content a:hover h4 {
-    color: #f44336;
+    color: #0095f2;
 }
 
 .pagination {
@@ -715,13 +713,13 @@ textarea.form-control {
 }
 
 .pagination li a:hover {
-    background: #f44336;
-    color: #fff;
+    background: #0095f2;
+    color: #000;
 }
 
 .pagination li.active a {
-    background: #f44336;
-    color: #fff;
+    background: #0095f2;
+    color: #000;
 }
 
 .sidebar-widget .widget {
@@ -830,5 +828,5 @@ textarea.form-control {
 }
 
 .footer-widget a:hover {
-    color: #f44336;
+    color: #0095f2;
 }

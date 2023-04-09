@@ -1,3 +1,14 @@
 .nav-link {
-    color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.navbar {
+    position: fixed;
+    padding-top: 0;
+    z-index: 400;
+    justify-content: space-between;
+    background: #fff;
+    width: 100vw;
+    padding-bottom: -600px;
+    /* margin-bottom: 200px; */
 }

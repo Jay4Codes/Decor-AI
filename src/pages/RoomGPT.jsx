@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import FileBase64 from "react-file-base64";
 import ImageSlider from "react-image-comparison-slider";
+import Fade from "react-reveal/Fade";
 
 const RoomGPT = () => {
-  const [image, setImage] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const [newImage, setNewImage] = useState("");
+  const [newImage, setNewImage] = useState(null);
   const [prompt, setPrompt] = useState("");
   const [loadingTime, setLoadingTime] = useState(0);
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -15,8 +13,6 @@ const RoomGPT = () => {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    setSelectedImage(file);
-
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -28,22 +24,13 @@ const RoomGPT = () => {
 
   const requestOptions = {
     method: "POST",
-    body: JSON.stringify({ image: image.base64, prompt: prompt }),
+    body: JSON.stringify({ image: previewImage, prompt: prompt }),
   };
 
-  const handleSubmit = () => {
-    if (!image) {
-      alert("Please upload an image");
-      return;
-    }
-    callApi();
-  };
-
-  const callApi = async () => {
+  const handleSubmit = async () => {
     try {
       const res = await fetch(url, requestOptions);
       const data = await res.json();
-      console.log(data.image);
       setNewImage(data.image);
       setLoadingTime(parseInt(data.loading_time));
     } catch (error) {
@@ -51,65 +38,70 @@ const RoomGPT = () => {
     }
   };
 
-  // const handleSubmit = (event) => {
-  //   callApi();
-  // };
-
-  // const callApi = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       "http://127.0.0.1:8000/ml-model/",
-  //       requestOptions
-  //     );
-  //     const data = await res.json();
-  //     console.log(data.image);
-  //     setNewImage(data.image);
-  //     // setLoadingTime(parseInt(data.loading_time));
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
-
   return (
-    <div>
-      <div className="avatar">
-        {previewImage ? (
-          <img src={previewImage} alt="preview" />
-        ) : (
-          <>
-            <label>Upload Image</label>
-            <FileBase64
-              type="file"
-              multiple={false}
-              className="image-upload"
-              onDone={(file) => setImage(file)}
-            />
-          </>
-        )}
-      </div>
-      <input type="text" onChange={(e) => setPrompt(e.target.value)} />
-      <button
-        className="btn btn-main"
-        name="submit"
-        type="submit"
-        onClick={(e) => {
-          e.preventDefault();
-          setSubmitClicked(true);
-          handleSubmit();
-        }}
-      >
-        Submit
-      </button>
-      <img src={newImage} alt="newImage" />
-      <div style={{ width: 700, height: 450 }}>
-        <ImageSlider
-          image1={previewImage}
-          image2={newImage}
-          onSlide={() => {
-            console.log("sliding");
-          }}
+    <div style={{ marginLeft: "20px" }}>
+      <h1>RoomGPT</h1>
+      <Fade bottom cascade>
+        <label>Image Preview</label>
+        <div className="avatar">
+          {previewImage ? (
+            <>
+              <img
+                src={previewImage}
+                alt="preview"
+                style={{ width: "400px", marginLeft: "40px" }}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                className="form-control m-3"
+                onChange={handleImageUpload}
+              ></input>
+            </>
+          ) : (
+            <>
+              <label>Upload Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                className="form-control m-3"
+                onChange={handleImageUpload}
+              ></input>
+            </>
+          )}
+        </div>
+        <label className="m-3" style={{ fontSize: "40px" }}>
+          Prompt
+        </label>
+        <input
+          type="text"
+          placeholder="Example: 'I want to redesign my living room in rajasthani style'"
+          className="form-control m-3"
+          onChange={(e) => setPrompt(e.target.value)}
         />
-      </div>
+        <button
+          className="btn btn-main"
+          name="submit"
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            setSubmitClicked(true);
+            handleSubmit();
+          }}
+        >
+          Submit
+        </button>
+      </Fade>
+
+      {/* <img src={newImage} alt="newImage" /> */}
+
+      <Fade bottom cascade>
+        <div style={{ width: 700, height: 450 }}>
+          {newImage ? (
+            <ImageSlider image1={previewImage} image2={newImage} />
+          ) : null}
+        </div>
+      </Fade>
     </div>
   );
 };

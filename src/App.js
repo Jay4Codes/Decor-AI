@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import RoomGPT from "./pages/RoomGPT";
+import Calculate from "./pages/Calculate";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useEffect } from "react";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/roomGPT" element={<RoomGPT />} />
+          <Route path="calculate" element={<Calculate />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
