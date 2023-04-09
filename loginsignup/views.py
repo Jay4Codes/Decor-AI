@@ -83,19 +83,19 @@ class pricecalculation(APIView):
         carpet_area = request.POST.get('carpet_area')
         if 500 <= int(carpet_area) < 700:
             data = [{'title': 'Royale Shyne Luxury Emulsion', 'desc': 'Luxury has many forms, and one of them is the Royale Shyne Luxury Emulsion. A high sheen, washable wall paint with stain-resistant finish ensures walls look new for a long time. The paint’s high gloss and even smoother finish would make you want to stare at it all day. It’s the only paint emulsion in India equipped with Teflon surface protector that makes it highly durable.',
-                     'ltr': '26 - 30', 'price': '23074 - 26370'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '26- 30', 'price': '23336 - 26670'},
+                     'ltr': '26 - 30 in litres', 'price': '₹23074 - 26370'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '26- 30', 'price': '23336 - 26670'},
                     {'title': 'Royale Luxury emulsion', 'desc': 'Luxury is just a brushstroke away with Royale Luxury Emulsion. It’s the only paint emulsion in India equipped with Teflon surface protector',
                      'ltr': '26-30', 'price': '21263 - 24300'}]
             return Response(data)
         if 700 <= int(carpet_area) < 1000:
             data = [{'title': 'Royale Shyne Luxury Emulsion', 'desc': 'Luxury has many forms, and one of them is the Royale Shyne Luxury Emulsion. A high sheen, washable wall paint with stain-resistant finish ensures walls look new for a long time. The paint’s high gloss and even smoother finish would make you want to stare at it all day. It’s the only paint emulsion in India equipped with Teflon surface protector that makes it highly durable.',
-                     'ltr': '35-40', 'price': '30765 - 35160'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '35 - 40', 'price': '31115 - 35560'},
+                     'ltr': '35-40 in litres', 'price': '₹30765 - 35160'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '35 - 40', 'price': '31115 - 35560'},
                     {'title': 'Royale Luxury emulsion', 'desc': 'Luxury is just a brushstroke away with Royale Luxury Emulsion. It’s the only paint emulsion in India equipped with Teflon surface protector',
                      'ltr': '23 - 28', 'price': '20067 - 24080'}]
             return Response(data)
         if 1000 <= int(carpet_area):
             data = [{'title': 'Royale Shyne Luxury Emulsion', 'desc': 'Luxury has many forms, and one of them is the Royale Shyne Luxury Emulsion. A high sheen, washable wall paint with stain-resistant finish ensures walls look new for a long time. The paint’s high gloss and even smoother finish would make you want to stare at it all day. It’s the only paint emulsion in India equipped with Teflon surface protector that makes it highly durable.',
-                     'ltr': '48-55', 'price': '42302 - 48345'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '48 - 55', 'price': '42783 - 488895'},
+                     'ltr': '48-55 in litres', 'price': '₹42302 - 48345'}, {'title': 'Royale MATT', 'desc': 'Bumpless walls for a smooth look and luxurious feel, Royale Matt Luxury Emulsion gives the perfect matt finish to your walls. It’s the only', 'ltr': '48 - 55', 'price': '42783 - 488895'},
                     {'title': 'Royale Luxury emulsion', 'desc': 'Luxury is just a brushstroke away with Royale Luxury Emulsion. It’s the only paint emulsion in India equipped with Teflon surface protector',
                      'ltr': '32-39', 'price': '27592 - 33110'}]
             return Response(data)
